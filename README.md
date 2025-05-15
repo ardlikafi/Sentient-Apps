@@ -1,36 +1,84 @@
-# Sentient Chess
+<p align="center">
+  <img src="assets/images/img_logo.png" height="64" alt="Sentient Chess Logo" />
+</p>
+<h1 align="center">♟️ Sentient Chess</h1>
+<p align="center">
+  <b>Aplikasi Catur Modern & Komunitas Chess Masa Kini</b><br>
+  <img src="https://img.shields.io/badge/Flutter-3.x-blue?logo=flutter">
+  <img src="https://img.shields.io/badge/Platform-Android%20%7C%20iOS-green?logo=android&logoColor=white">
+  <img src="https://img.shields.io/badge/Status-Beta-orange">
+</p>
 
-## Overview
-Sentient Chess adalah aplikasi mobile modern yang dirancang untuk penggemar catur. Aplikasi ini menyediakan platform yang intuitif dan menarik untuk bermain, belajar, dan berkembang dalam permainan catur. Dengan antarmuka yang elegan dan fitur-fitur eksklusif, Sentient Chess menjadi pilihan utama bagi pemain catur di era digital.
+---
 
-## Fitur Utama
-- **Antarmuka Modern**: Desain UI yang elegan dengan gradient background yang dinamis.
-- **Animasi Transisi**: Transisi antar halaman yang smooth dan eye-catching menggunakan animasi fade dan scale.
-- **Multi-bahasa**: Dukungan untuk berbagai bahasa, memudahkan pengguna dari berbagai negara.
-- **Integrasi Sosial**: Login dan sign up menggunakan akun Google dan Facebook.
-- **Responsif**: Tampilan yang responsif dan adaptif untuk berbagai ukuran layar.
+## ✨ Fitur Utama
 
-## Cara Instalasi
-1. Clone repository ini:
+- ♟️ **Main Chess Board**: Bermain catur dengan AI atau teman (**coming soon**)
+- 🏆 **Kompetisi & Leaderboard**: Ikuti turnamen dan lihat ranking pemain (**coming soon**)
+- 📊 **Statistik Permainan**: Lihat riwayat, grafik performa, dan analisis langkah (**coming soon**)
+- 🧑‍🎓 **Belajar & Puzzle**: Latihan taktik, puzzle harian, dan video pembelajaran (**coming soon**)
+- 🌐 **Komunitas & Forum**: Diskusi, share strategi, dan update komunitas (**coming soon**)
+- 🔒 **Login & Register Modern**: Daftar/login dengan email, Google, Facebook
+- 🎨 **UI Modern & Animasi**: Tampilan elegan, transisi animasi smooth, dan gradient dinamis
+- 🌍 **Multi-bahasa**: Dukungan berbagai bahasa (**coming soon**)
+- 📱 **Responsif**: Nyaman di semua ukuran layar
+
+---
+
+## 🚀 Instalasi & Menjalankan
+
+1. **Clone repository:**
    ```bash
    git clone https://github.com/yourusername/sentient-chess.git
-   ```
-2. Masuk ke direktori proyek:
-   ```bash
    cd sentient-chess
    ```
-3. Install dependencies:
+2. **Install dependencies:**
    ```bash
    flutter pub get
    ```
-4. Jalankan aplikasi:
+3. **Jalankan aplikasi:**
    ```bash
    flutter run
    ```
 
-## Kontak
-Untuk informasi lebih lanjut atau dukungan, silakan hubungi kami di [email@example.com](mailto:email@example.com).
+---
+
+## 🛠️ Stack & Teknologi
+
+- **Flutter 3.x** — UI modern multiplatform
+- **Dart** — Bahasa pemrograman utama
+- **Image Picker** — Upload foto profil
+- **(Coming soon)**: Firebase, REST API, Notifikasi, dan lainnya
 
 ---
 
-Dikembangkan dengan ❤️ oleh Tim Sentient Chess.
+## 📸 Preview
+
+<p align="center">
+  <img src="assets/screenshots/splash.png" width="200"/>
+  <img src="assets/screenshots/welcome.png" width="200"/>
+  <img src="assets/screenshots/register.png" width="200"/>
+  <!-- Tambahkan screenshot lain jika ada -->
+</p>
+
+---
+
+## 🤝 Kontribusi
+
+Kontribusi terbuka untuk fitur, bug, atau ide baru!  
+1. Fork repo ini  
+2. Buat branch baru  
+3. Pull request ke main
+
+---
+
+## 📬 Kontak & Dukungan
+
+Untuk pertanyaan, saran, atau kerjasama, hubungi:  
+📧 [email@example.com](mailto:email@example.com)
+
+---
+
+<p align="center">
+  Dibuat dengan ❤️ oleh Tim Sentient Chess
+</p>

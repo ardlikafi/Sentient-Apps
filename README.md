@@ -1,16 +1,36 @@
-# sentient
+# Sentient Chess
 
-A new Flutter project.
+## Overview
+Sentient Chess adalah aplikasi mobile modern yang dirancang untuk penggemar catur. Aplikasi ini menyediakan platform yang intuitif dan menarik untuk bermain, belajar, dan berkembang dalam permainan catur. Dengan antarmuka yang elegan dan fitur-fitur eksklusif, Sentient Chess menjadi pilihan utama bagi pemain catur di era digital.
 
-## Getting Started
+## Fitur Utama
+- **Antarmuka Modern**: Desain UI yang elegan dengan gradient background yang dinamis.
+- **Animasi Transisi**: Transisi antar halaman yang smooth dan eye-catching menggunakan animasi fade dan scale.
+- **Multi-bahasa**: Dukungan untuk berbagai bahasa, memudahkan pengguna dari berbagai negara.
+- **Integrasi Sosial**: Login dan sign up menggunakan akun Google dan Facebook.
+- **Responsif**: Tampilan yang responsif dan adaptif untuk berbagai ukuran layar.
 
-This project is a starting point for a Flutter application.
+## Cara Instalasi
+1. Clone repository ini:
+   ```bash
+   git clone https://github.com/yourusername/sentient-chess.git
+   ```
+2. Masuk ke direktori proyek:
+   ```bash
+   cd sentient-chess
+   ```
+3. Install dependencies:
+   ```bash
+   flutter pub get
+   ```
+4. Jalankan aplikasi:
+   ```bash
+   flutter run
+   ```
 
-A few resources to get you started if this is your first Flutter project:
+## Kontak
+Untuk informasi lebih lanjut atau dukungan, silakan hubungi kami di [email@example.com](mailto:email@example.com).
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Dikembangkan dengan ❤️ oleh Tim Sentient Chess.

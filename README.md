@@ -7,6 +7,10 @@
   <img src="https://img.shields.io/badge/Flutter-3.x-blue?logo=flutter">
   <img src="https://img.shields.io/badge/Platform-Android%20%7C%20iOS-green?logo=android&logoColor=white">
   <img src="https://img.shields.io/badge/Status-Beta-orange">
+  <img src="https://img.shields.io/badge/Event-coming%20soon-lightgrey">
+  <img src="https://img.shields.io/badge/Course-coming%20soon-lightgrey">
+  <img src="https://img.shields.io/badge/Article-coming%20soon-lightgrey">
+  <img src="https://img.shields.io/badge/Shop-coming%20soon-lightgrey">
 </p>
 
 ---
@@ -22,6 +26,20 @@
 - 🎨 **UI Modern & Animasi**: Tampilan elegan, transisi animasi smooth, dan gradient dinamis
 - 🌍 **Multi-bahasa**: Dukungan berbagai bahasa (**coming soon**)
 - 📱 **Responsif**: Nyaman di semua ukuran layar
+
+---
+
+## 📅 Event (coming soon)
+- Ikuti event catur online & offline, turnamen komunitas, dan challenge seru lainnya.
+
+## 🎓 Course (coming soon)
+- Belajar catur dari master, video course, dan materi interaktif.
+
+## 📰 Article (coming soon)
+- Baca artikel strategi, berita catur, dan tips eksklusif dari para ahli.
+
+## 🛒 Shop (coming soon)
+- Beli perlengkapan catur, merchandise, dan item digital langsung dari aplikasi.
 
 ---
 
@@ -56,8 +74,8 @@
 
 <p align="center">
   <img src="assets/screenshots/splash.png" width="200"/>
+  <img src="assets/screenshots/cta.png" width="200"/>
   <img src="assets/screenshots/welcome.png" width="200"/>
-  <img src="assets/screenshots/register.png" width="200"/>
   <!-- Tambahkan screenshot lain jika ada -->
 </p>
 

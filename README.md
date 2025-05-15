@@ -47,7 +47,7 @@
 
 1. **Clone repository:**
    ```bash
-   git clone https://github.com/yourusername/sentient-chess.git
+   git clone https://github.com/ardlikafi/sentient-chess.git
    cd sentient-chess
    ```
 2. **Install dependencies:**

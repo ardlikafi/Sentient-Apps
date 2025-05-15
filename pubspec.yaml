@@ -95,6 +95,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/screenshots/
     - assets/images/img_logo.png
     - assets/images/img_splash_screen.png
   fonts:

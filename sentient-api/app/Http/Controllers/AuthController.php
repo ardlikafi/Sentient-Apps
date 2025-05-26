@@ -15,10 +15,10 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
-            'username' => 'required|string|max:255|unique:profiles',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -26,16 +26,21 @@ class AuthController extends Controller
         }
 
         $user = User::create([
-            'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $avatarPath = null;
+        if ($request->hasFile('avatar')) {
+            $avatarPath = $request->file('avatar')->store('avatars', 'public');
+        }
 
         $profile = Profile::create([
             'user_id' => $user->id,
             'username' => $request->username,
             'bio' => $request->bio ?? null,
-            'avatar' => $request->avatar ?? null,
+            'avatar' => $avatarPath,
         ]);
 
         $token = JWTAuth::fromUser($user);
@@ -70,6 +75,27 @@ class AuthController extends Controller
         $profile = $user->profile;
         return response()->json([
             'user' => $user,
+            'profile' => $profile,
+        ]);
+    }
+
+    // Update avatar
+    public function updateAvatar(Request $request)
+    {
+        $user = auth()->user();
+        $profile = $user->profile;
+        $validator = Validator::make($request->all(), [
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+        if ($request->hasFile('avatar')) {
+            $avatarPath = $request->file('avatar')->store('avatars', 'public');
+            $profile->avatar = $avatarPath;
+            $profile->save();
+        }
+        return response()->json([
             'profile' => $profile,
         ]);
     }

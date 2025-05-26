@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'api_service.dart';
 import 'animated_route.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -163,22 +164,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
       _loading = true;
       _error = null;
     });
-    final result = await ApiService.register(
-      name: _nameController.text,
-      email: _emailController.text,
-      password: _passwordController.text,
-      username: _usernameController.text,
-    );
-    setState(() {
-      _loading = false;
-    });
-    if (result != null && result['token'] != null) {
-      // Sukses, bisa simpan token dan navigasi ke halaman profile/dashboard
-      Navigator.pushReplacementNamed(context, '/login');
-    } else {
+    try {
+      final result = await ApiService.register(
+        username: _usernameController.text,
+        email: _emailController.text,
+        password: _passwordController.text,
+        avatar: _profileImage,
+      );
       setState(() {
-        _error = 'Register gagal. Pastikan data valid.';
+        _loading = false;
       });
+      if (result != null && result['token'] != null) {
+        print('Register Berhasil, token: \\${result['token']}');
+        if (mounted) {
+          Navigator.pushReplacementNamed(context, '/login');
+        }
+      } else {
+        setState(() {
+          _error = 'Register gagal. Pastikan data valid dan server berjalan.';
+        });
+      }
+    } catch (e) {
+      setState(() {
+        _loading = false;
+        _error = 'Terjadi kesalahan. Pastikan server Laravel berjalan.';
+      });
+      print('Error during register: $e');
     }
   }
 

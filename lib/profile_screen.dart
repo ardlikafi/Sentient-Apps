@@ -309,7 +309,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                   .toString()
                                                   .startsWith('http')
                                               ? profile!['avatar']
-                                              : 'http://192.168.1.19:8000/storage/${profile!['avatar']}',
+                                              : 'http://${ApiService.serverIP}:${ApiService.serverPort}/storage/${profile!['avatar']}',
                                         )
                                         : null as ImageProvider<Object>?,
                                 child:

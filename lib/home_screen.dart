@@ -581,7 +581,7 @@ class _HomeHeaderState extends State<HomeHeader> {
             _avatarUrl =
                 avatar.toString().startsWith('http')
                     ? avatar
-                    : 'http://192.168.1.19:8000/storage/$avatar';
+                    : 'http://${ApiService.serverIP}:${ApiService.serverPort}/storage/$avatar';
           } else {
             _avatarUrl = null;
           }

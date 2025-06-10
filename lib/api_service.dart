@@ -5,8 +5,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 class ApiService {
-  // Gunakan IP komputer yang menjalankan server Laravel
-  static const String baseUrl = 'http://192.168.1.19:8000/api';
+  // Konfigurasi server
+  static const String serverIP =
+      '192.168.1.14'; // Sesuaikan dengan IP server Anda
+  static const int serverPort = 8000;
+  static const String baseUrl = 'http://$serverIP:$serverPort/api';
 
   static Future<Map<String, dynamic>?> register({
     required String username,

@@ -6,96 +6,150 @@ use App\Models\User;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
-    // Register
+    // Register tanpa validasi
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'username' => 'required|string|max:255|unique:users',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
-
         $user = User::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'username' => $request->username ?? 'user_' . time(),
+            'email' => $request->email ?? 'user_' . time() . '@example.com',
+            'password' => Hash::make($request->password ?? 'password123'),
         ]);
-
-        $avatarPath = null;
-        if ($request->hasFile('avatar')) {
-            $avatarPath = $request->file('avatar')->store('avatars', 'public');
-        }
 
         $profile = Profile::create([
             'user_id' => $user->id,
-            'username' => $request->username,
-            'bio' => $request->bio ?? null,
-            'avatar' => $avatarPath,
+            'username' => $user->username,
+            'bio' => null,
+            'avatar' => null,
         ]);
 
-        $token = JWTAuth::fromUser($user);
+        // Token sederhana
+        $token = base64_encode($user->id . '|' . time());
 
         return response()->json([
+            'success' => true,
+            'message' => 'Register berhasil',
             'user' => $user,
             'profile' => $profile,
             'token' => $token,
         ], 201);
     }
 
-    // Login
+    // Login tanpa validasi
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
-        if (!$token = JWTAuth::attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+        // Cari user berdasarkan email atau buat baru jika tidak ada
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            // Buat user baru jika tidak ditemukan
+            $user = User::create([
+                'username' => 'user_' . time(),
+                'email' => $request->email,
+                'password' => Hash::make($request->password ?? 'password123'),
+            ]);
+
+            $profile = Profile::create([
+                'user_id' => $user->id,
+                'username' => $user->username,
+                'bio' => null,
+                'avatar' => null,
+            ]);
+        } else {
+            $profile = $user->profile;
         }
-        $user = auth()->user();
-        $profile = $user->profile;
+
+        // Token sederhana
+        $token = base64_encode($user->id . '|' . time());
+
         return response()->json([
+            'success' => true,
+            'message' => 'Login berhasil',
             'user' => $user,
             'profile' => $profile,
             'token' => $token,
         ]);
     }
 
-    // Get profile (protected)
-    public function profile()
+    // Get profile (sementara tanpa auth)
+    public function profile(Request $request)
     {
-        $user = auth()->user();
-        $profile = $user->profile;
+        $token = $request->header('Authorization');
+        if (!$token) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Token tidak ditemukan'
+            ], 401);
+        }
+
+        // Decode token sederhana
+        $tokenData = explode('|', base64_decode(str_replace('Bearer ', '', $token)));
+        $userId = $tokenData[0] ?? null;
+
+        if (!$userId) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Token tidak valid'
+            ], 401);
+        }
+
+        $user = User::find($userId);
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User tidak ditemukan'
+            ], 404);
+        }
+
         return response()->json([
+            'success' => true,
             'user' => $user,
-            'profile' => $profile,
+            'profile' => $user->profile,
         ]);
     }
 
-    // Update avatar
+    // Update avatar (sementara tanpa auth)
     public function updateAvatar(Request $request)
     {
-        $user = auth()->user();
-        $profile = $user->profile;
-        $validator = Validator::make($request->all(), [
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+        $token = $request->header('Authorization');
+        if (!$token) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Token tidak ditemukan'
+            ], 401);
         }
+
+        // Decode token sederhana
+        $tokenData = explode('|', base64_decode(str_replace('Bearer ', '', $token)));
+        $userId = $tokenData[0] ?? null;
+
+        if (!$userId) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Token tidak valid'
+            ], 401);
+        }
+
+        $user = User::find($userId);
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User tidak ditemukan'
+            ], 404);
+        }
+
+        $profile = $user->profile;
         if ($request->hasFile('avatar')) {
             $avatarPath = $request->file('avatar')->store('avatars', 'public');
             $profile->avatar = $avatarPath;
             $profile->save();
         }
+
         return response()->json([
+            'success' => true,
+            'message' => 'Avatar berhasil diupdate',
             'profile' => $profile,
         ]);
     }

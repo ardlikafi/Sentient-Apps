@@ -8,7 +8,9 @@ plugins {
 android {
     namespace = "com.example.sentient"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+
+    // DIUBAH: Menentukan versi NDK secara spesifik sesuai kebutuhan plugin
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

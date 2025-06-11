@@ -38,6 +38,7 @@ dependencies:
   shared_preferences: ^2.5.3
   image_picker: ^1.1.2
   path_provider: ^2.1.5
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:
@@ -98,6 +99,11 @@ flutter:
     - assets/screenshots/
     - assets/images/img_logo.png
     - assets/images/img_splash_screen.png
+    - assets/images/avatar_default.png
+    - assets/images/bg_titik.png
+    - assets/icons/ic_inprogress_course.png
+    - assets/icons/ic_finished_course.png
+    - assets/icons/ic_save_course.png
   fonts:
     - family: Poppins
       fonts:

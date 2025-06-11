@@ -5,8 +5,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 class ApiService {
-  // Gunakan IP komputer yang menjalankan server Laravel
-  static const String baseUrl = 'http://192.168.1.19:8000/api';
+  // Konfigurasi server
+  static const String serverIP =
+      '192.168.110.40'; // Sesuaikan dengan IP server Anda
+  static const int serverPort = 8000;
+  static const String baseUrl = 'http://$serverIP:$serverPort/api';
 
   static Future<Map<String, dynamic>?> register({
     required String username,
@@ -47,10 +50,10 @@ class ApiService {
     try {
       final response = await http
           .post(
-            Uri.parse('$baseUrl/login'),
-            headers: {'Content-Type': 'application/json'},
-            body: jsonEncode({'email': email, 'password': password}),
-          )
+        Uri.parse('$baseUrl/login'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'email': email, 'password': password}),
+      )
           .timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
@@ -70,12 +73,12 @@ class ApiService {
     try {
       final response = await http
           .get(
-            Uri.parse('$baseUrl/profile'),
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer $token',
-            },
-          )
+        Uri.parse('$baseUrl/profile'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      )
           .timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {

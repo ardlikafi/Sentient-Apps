@@ -104,6 +104,9 @@ flutter:
     - assets/icons/ic_inprogress_course.png
     - assets/icons/ic_finished_course.png
     - assets/icons/ic_save_course.png
+    - assets/images/course_1.png
+    - assets/images/course_2.png
+    - assets/images/course_3.png
   fonts:
     - family: Poppins
       fonts:
